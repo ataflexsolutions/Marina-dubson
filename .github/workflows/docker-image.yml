@@ -1,9 +1,7 @@
 name: Build & Push Docker image (GHCR)
 
+# Manual only — docker-ghcr.yml already publishes on push to main.
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 permissions:
@@ -16,6 +14,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Normalize owner (lowercase for GHCR)
+        run: |
+          OWNER_LC=$(echo "${GITHUB_REPOSITORY_OWNER}" | tr '[:upper:]' '[:lower:]')
+          echo "IMAGE=ghcr.io/${OWNER_LC}/marina-dubson:latest" >> "$GITHUB_ENV"
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -34,4 +37,4 @@ jobs:
           build-args: |
             DATABASE_URL=postgresql://localhost:5432/maria_dubson
           push: true
-          tags: ghcr.io/sajid-abbas110/marina-dubson:latest
+          tags: ${{ env.IMAGE }}
