@@ -13,8 +13,8 @@ export const metadata: Metadata = {
 // elsewhere on the site and excluded here to avoid duplicates.
 const imageFiles = [
     'JCP_MARINA-2675-20250508-Edit.jpg',
-    'JCP_MARINA-2685-20250508-Edit.jpg',
     'JCP_MARINA-2756-20250508-Edit.jpg',
+    'JCP_MARINA-2685-20250508-Edit.jpg',
     'JCP_MARINA-2758-20250508-Edit.jpg',
     'JCP_MARINA-2815-20250508.jpg',
     'JCP_MARINA-2882-20250508-Edit.jpg',

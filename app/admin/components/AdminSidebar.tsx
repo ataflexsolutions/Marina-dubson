@@ -151,7 +151,7 @@ export default function AdminSidebar({ isCollapsed, toggleCollapse, isOpen, setI
                 </div>
 
                 {/* Navigation */}
-                <div className="flex-1 overflow-y-auto py-4" style={{ scrollbarWidth: 'none' }}>
+                <div className="flex-1 overflow-y-auto py-4">
                     {navigation.map((section) => {
                         const filtered = section.items.filter(item => {
                             if (!user) return false

@@ -111,17 +111,81 @@
   }
 }
 
-/* ─── Global Scrollbar Hiding ─── */
+/* ─── Global Scrollbar (always visible site-wide) ─── */
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+  scrollbar-width: auto;
+  scrollbar-color: #B8860B #e8e8e8;
+  -ms-overflow-style: scrollbar;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+}
+
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  background: #e8e8e8;
+}
+
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  background: #B8860B;
+  border-radius: 8px;
+  border: 3px solid #e8e8e8;
+  min-height: 40px;
+}
+
+html::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover {
+  background: #9a7209;
+}
+
 * {
-  scrollbar-width: none;
-  /* Firefox */
-  -ms-overflow-style: none;
-  /* IE/Edge */
+  scrollbar-width: auto;
+  scrollbar-color: #B8860B #f0f0f0;
+  -ms-overflow-style: scrollbar;
 }
 
 *::-webkit-scrollbar {
-  display: none;
-  /* Chrome/Safari/Opera */
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #f0f0f0;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #B8860B;
+  border-radius: 8px;
+  border: 2px solid #f0f0f0;
+  background-clip: padding-box;
+  min-height: 40px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #9a7209;
+  background-clip: padding-box;
+}
+
+/* Opt-in: hide only where explicitly requested */
+.no-scrollbar,
+.scrollbar-hide {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.no-scrollbar::-webkit-scrollbar,
+.scrollbar-hide::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
 /* ─── Component Library ─── */
@@ -430,22 +494,30 @@
   animation-delay: 300ms;
 }
 
-/* ─── Scrollbar ─── */
-::extra-webkit-scrollbar {
+/* ─── Named custom scrollbar (panels / modals) ─── */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #B8860B transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
-::extra-webkit-scrollbar-track {
+.custom-scrollbar::-webkit-scrollbar-track {
   background: transparent;
 }
 
-::extra-webkit-scrollbar-thumb {
-  @apply bg-slate-300 rounded-full border-2 border-transparent bg-clip-padding;
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #B8860B;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
 }
 
-::extra-webkit-scrollbar-thumb:hover {
-  @apply bg-slate-400;
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #9a7209;
 }
 
 /* ─── Grid background ─── */
@@ -491,11 +563,6 @@
     @apply active:scale-[0.98] transition-all duration-200;
     -webkit-tap-highlight-color: transparent;
     @apply mb-4 w-full mx-0;
-  }
-
-  /* Hide scrollbars for an app feel */
-  ::-webkit-scrollbar {
-    display: none;
   }
 
   body {
