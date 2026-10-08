@@ -30,8 +30,8 @@ COPY --from=builder /app/node_modules/prisma ./node_modules/prisma
 COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
 COPY --from=builder /app/scripts/entrypoint.sh ./scripts/entrypoint.sh
 
-# Ensure the entrypoint script is executable
-RUN chmod +x ./scripts/entrypoint.sh
+# Ensure Unix line endings + executable bit (CRLF breaks shebang on Linux)
+RUN sed -i 's/\r$//' ./scripts/entrypoint.sh && chmod +x ./scripts/entrypoint.sh
 
 EXPOSE 3000
-ENTRYPOINT ["./scripts/entrypoint.sh"]
+ENTRYPOINT ["/bin/sh", "./scripts/entrypoint.sh"]
