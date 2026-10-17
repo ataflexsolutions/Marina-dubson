@@ -49,33 +49,45 @@ export function MarinaHero({ bgImage = '/home-her-bg-latest.png', dividerImage =
 
 export function MarinaAbout() {
   return (
-    <section className="relative overflow-hidden pt-24 pb-24 md:pb-32 bg-[#0B0B0C]">
-      <div className="absolute inset-0 z-0">
-        <Image src="/services-hero-secondary.png" alt="Marina Dubson working on a stenotype machine" fill className="object-cover object-left" />
-      </div>
+    <section className="relative overflow-hidden bg-[#0B0B0C]">
+      <div className="mx-auto grid max-w-7xl md:grid-cols-2 md:items-stretch">
+        {/* Smiling portrait — not the stenotype / desk crop */}
+        <div className="relative min-h-[420px] w-full md:min-h-[640px]">
+          <Image
+            src="/JCP_MARINA-2685-20250508-Edit.jpg"
+            alt="Marina Dubson smiling"
+            fill
+            className="object-cover object-[50%_18%]"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            priority
+          />
+        </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8">
-        <div className="ml-auto w-full md:w-3/5 lg:w-1/2">
-          <div className="flex items-center gap-4 mb-2">
-            <div className="h-[2px] bg-[#D9C035] w-20"></div>
-            <h4 className="text-[#D9C035] text-sm font-semibold tracking-wide">About Us</h4>
+        <div className="relative z-10 flex flex-col justify-center px-6 py-16 md:px-10 md:py-24 lg:px-14">
+          <div className="mb-2 flex items-center gap-4">
+            <div className="h-[2px] w-20 bg-[#D9C035]" />
+            <h4 className="text-sm font-semibold tracking-wide text-[#D9C035]">About Us</h4>
           </div>
-          <h2 className="text-4xl md:text-[3.5rem] font-black uppercase text-white mb-8 tracking-tight leading-none">Marina Dubson</h2>
-          <p className="text-white/80 mb-6 leading-relaxed font-medium text-[16px]">
+          <h2 className="mb-8 text-4xl font-black uppercase leading-none tracking-tight text-white md:text-[3.5rem]">
+            Marina Dubson
+          </h2>
+          <p className="mb-6 text-[16px] font-medium leading-relaxed text-white/85">
             For attorneys, agencies, and institutions that can&apos;t afford a single missed word, Marina pairs stenographic speed with a deep command of English grammar, syntax, and legal phraseology. The result is a clean, certified transcript delivered accurately the first time.
           </p>
-          <p className="text-white/80 mb-10 leading-relaxed font-medium text-[16px]">
+          <p className="mb-10 text-[16px] font-medium leading-relaxed text-white/85">
             Marina is an independent court reporter who personally handles every assignment she accepts. And if she&apos;s ever unable to cover a job herself, she draws on her trusted network of vetted reporters to help find coverage — so your proceeding is never left without a reporter.
           </p>
-          <Link href="/services" className="inline-block bg-[#D9C035] text-gray-900 px-8 py-4 rounded-md font-medium tracking-wide text-sm hover:bg-[#B8860B] transition-colors shadow-md">
+          <Link
+            href="/services"
+            className="inline-block w-fit rounded-md bg-[#D9C035] px-8 py-4 text-sm font-medium tracking-wide text-gray-900 shadow-md transition-colors hover:bg-[#B8860B]"
+          >
             View Our Services
           </Link>
         </div>
       </div>
 
-      {/* Bottom Horizontal SVG Divider */}
-      <div className="absolute bottom-0 left-0 right-0 w-full z-20 leading-none translate-y-px">
-        <Image src="/marina-about-us-svg.png" alt="About Divider" width={1920} height={100} className="w-full h-auto object-cover object-bottom" />
+      <div className="absolute bottom-0 left-0 right-0 z-20 translate-y-px leading-none">
+        <Image src="/marina-about-us-svg.png" alt="About Divider" width={1920} height={100} className="h-auto w-full object-cover object-bottom" />
       </div>
     </section>
   )

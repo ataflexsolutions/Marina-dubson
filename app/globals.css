@@ -111,67 +111,80 @@
   }
 }
 
-/* ─── Global Scrollbar (always visible site-wide) ─── */
-html {
-  overflow-y: scroll;
-  scrollbar-gutter: stable;
-  scrollbar-width: auto;
-  scrollbar-color: #B8860B #e8e8e8;
-  -ms-overflow-style: scrollbar;
+/* ─── Scroll: keep document scrollable on all devices ─── */
+html,
+body {
+  height: auto;
+  min-height: 100%;
+  overflow-x: clip;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: auto;
 }
 
-html::-webkit-scrollbar,
-body::-webkit-scrollbar {
-  -webkit-appearance: none;
-  width: 14px;
-  height: 14px;
-}
+/* Custom gold scrollbar — desktop only (iOS/Android break with *::-webkit-scrollbar) */
+@media (min-width: 1025px) {
+  html {
+    overflow-y: scroll;
+    scrollbar-gutter: stable;
+    scrollbar-width: auto;
+    scrollbar-color: #B8860B #e8e8e8;
+    -ms-overflow-style: scrollbar;
+  }
 
-html::-webkit-scrollbar-track,
-body::-webkit-scrollbar-track {
-  background: #e8e8e8;
-}
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+  }
 
-html::-webkit-scrollbar-thumb,
-body::-webkit-scrollbar-thumb {
-  background: #B8860B;
-  border-radius: 8px;
-  border: 3px solid #e8e8e8;
-  min-height: 40px;
-}
+  html::-webkit-scrollbar-track,
+  body::-webkit-scrollbar-track {
+    background: #e8e8e8;
+  }
 
-html::-webkit-scrollbar-thumb:hover,
-body::-webkit-scrollbar-thumb:hover {
-  background: #9a7209;
-}
+  html::-webkit-scrollbar-thumb,
+  body::-webkit-scrollbar-thumb {
+    background: #B8860B;
+    border-radius: 8px;
+    border: 3px solid #e8e8e8;
+    min-height: 40px;
+  }
 
-* {
-  scrollbar-width: auto;
-  scrollbar-color: #B8860B #f0f0f0;
-  -ms-overflow-style: scrollbar;
-}
+  html::-webkit-scrollbar-thumb:hover,
+  body::-webkit-scrollbar-thumb:hover {
+    background: #9a7209;
+  }
 
-*::-webkit-scrollbar {
-  -webkit-appearance: none;
-  width: 12px;
-  height: 12px;
-}
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: #B8860B #f0f0f0;
+    -ms-overflow-style: scrollbar;
+  }
 
-*::-webkit-scrollbar-track {
-  background: #f0f0f0;
-}
+  *::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+  }
 
-*::-webkit-scrollbar-thumb {
-  background: #B8860B;
-  border-radius: 8px;
-  border: 2px solid #f0f0f0;
-  background-clip: padding-box;
-  min-height: 40px;
-}
+  *::-webkit-scrollbar-track {
+    background: #f0f0f0;
+  }
 
-*::-webkit-scrollbar-thumb:hover {
-  background: #9a7209;
-  background-clip: padding-box;
+  *::-webkit-scrollbar-thumb {
+    background: #B8860B;
+    border-radius: 8px;
+    border: 2px solid #f0f0f0;
+    background-clip: padding-box;
+    min-height: 40px;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: #9a7209;
+    background-clip: padding-box;
+  }
 }
 
 /* Opt-in: hide only where explicitly requested */
@@ -565,10 +578,16 @@ body::-webkit-scrollbar-thumb:hover {
     @apply mb-4 w-full mx-0;
   }
 
+  html,
   body {
-    overscroll-behavior-y: contain;
+    overflow-x: clip;
+    overflow-y: auto;
+    height: auto;
+    max-height: none;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: auto;
     background: hsl(var(--background));
-    @apply overflow-x-hidden w-full;
+    width: 100%;
   }
 
   /* Note: Portal layouts handle their own bottom padding (pb-20 lg:pb-0) internally */

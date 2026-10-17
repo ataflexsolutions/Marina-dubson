@@ -34,24 +34,22 @@ export function PublicHeader() {
         if (!menuOpen || typeof window === 'undefined') return
 
         const scrollY = window.scrollY
-        const originalBodyOverflow = document.body.style.overflow
-        const originalHtmlOverflow = document.documentElement.style.overflow
-        const originalBodyPosition = document.body.style.position
-        const originalBodyTop = document.body.style.top
-        const originalHtmlHeight = document.documentElement.style.height
-
         document.body.style.overflow = 'hidden'
         document.documentElement.style.overflow = 'hidden'
         document.body.style.position = 'fixed'
         document.body.style.top = `-${scrollY}px`
-        document.documentElement.style.height = '100%'
+        document.body.style.left = '0'
+        document.body.style.right = '0'
+        document.body.style.width = '100%'
 
         return () => {
-            document.body.style.overflow = originalBodyOverflow
-            document.documentElement.style.overflow = originalHtmlOverflow
-            document.body.style.position = originalBodyPosition
-            document.body.style.top = originalBodyTop
-            document.documentElement.style.height = originalHtmlHeight
+            document.body.style.overflow = ''
+            document.documentElement.style.overflow = ''
+            document.body.style.position = ''
+            document.body.style.top = ''
+            document.body.style.left = ''
+            document.body.style.right = ''
+            document.body.style.width = ''
             window.scrollTo(0, scrollY)
         }
     }, [menuOpen])
