@@ -1,7 +1,18 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-const MAINTENANCE_ON = process.env.MAINTENANCE_MODE === 'true'
+/**
+ * Maintenance is ON by default.
+ * Set MAINTENANCE_MODE=false at Docker *build* time to bring the site back.
+ * (Next.js middleware inlines this env during `next build`.)
+ */
+function isMaintenanceOn() {
+    const value = process.env.MAINTENANCE_MODE
+    if (value === undefined || value === '') return true
+    return value === 'true' || value === '1'
+}
+
+const MAINTENANCE_ON = isMaintenanceOn()
 const BYPASS_SECRET = process.env.MAINTENANCE_BYPASS_SECRET || ''
 
 export function middleware(request: NextRequest) {
@@ -11,12 +22,10 @@ export function middleware(request: NextRequest) {
 
     const { pathname, searchParams } = request.nextUrl
 
-    // Allow maintenance page itself
     if (pathname === '/maintenance' || pathname.startsWith('/maintenance/')) {
         return NextResponse.next()
     }
 
-    // Optional bypass for owners (cookie or query)
     const bypassQuery = searchParams.get('bypass')
     const bypassCookie = request.cookies.get('md_maintenance_bypass')?.value
     if (
@@ -43,9 +52,6 @@ export function middleware(request: NextRequest) {
 
 export const config = {
     matcher: [
-        /*
-         * Match all paths except static assets and Next internals.
-         */
         '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|css|js|map|txt|xml|woff2?)$).*)',
     ],
 }

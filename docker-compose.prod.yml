@@ -23,6 +23,8 @@ services:
       dockerfile: Dockerfile
       args:
         - DATABASE_URL=postgresql://${POSTGRES_USER:-marina}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-marina_crm}
+        - MAINTENANCE_MODE=${MAINTENANCE_MODE:-true}
+        - MAINTENANCE_BYPASS_SECRET=${MAINTENANCE_BYPASS_SECRET:-}
     restart: always
     environment:
       - DATABASE_URL=postgresql://${POSTGRES_USER:-marina}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-marina_crm}
@@ -30,8 +32,10 @@ services:
       - HOSTNAME=0.0.0.0
       - JWT_SECRET=${JWT_SECRET}
       - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
-      - NEXTAUTH_URL=https://md.aitaah.com
-      - NEXT_PUBLIC_APP_URL=https://md.aitaah.com
+      - NEXTAUTH_URL=https://dubsonstenoservices.com
+      - NEXT_PUBLIC_APP_URL=https://dubsonstenoservices.com
+      - MAINTENANCE_MODE=${MAINTENANCE_MODE:-true}
+      - MAINTENANCE_BYPASS_SECRET=${MAINTENANCE_BYPASS_SECRET:-}
     depends_on:
       db:
         condition: service_healthy
