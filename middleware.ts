@@ -2,13 +2,11 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 /**
- * Maintenance is ON by default.
- * Set MAINTENANCE_MODE=false at Docker *build* time to bring the site back.
- * (Next.js middleware inlines this env during `next build`.)
+ * Maintenance only when MAINTENANCE_MODE=true at Docker build time.
+ * Default is OFF (site open).
  */
 function isMaintenanceOn() {
     const value = process.env.MAINTENANCE_MODE
-    if (value === undefined || value === '') return true
     return value === 'true' || value === '1'
 }
 
