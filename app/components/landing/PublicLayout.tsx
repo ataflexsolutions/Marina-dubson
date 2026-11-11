@@ -211,7 +211,7 @@ export function PublicFooter({ dark = false }: { dark?: boolean }) {
                         </div>
                     </div>
 
-                    <div className="space-y-6">
+                    {/* <div className="space-y-6">
                         <h4 className={`text-lg font-black uppercase tracking-widest ${heading}`}>Pages</h4>
                         <div className={`flex flex-col gap-3 text-sm font-bold ${linkCol}`}>
                             <Link href="/" className="hover:text-[#D9C035] transition-colors">Home</Link>
@@ -220,7 +220,7 @@ export function PublicFooter({ dark = false }: { dark?: boolean }) {
                             <Link href="/blogs" className="hover:text-[#D9C035] transition-colors">Blogs</Link>
                             <Link href="/contact" className="hover:text-[#D9C035] transition-colors">Contact Us</Link>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
 

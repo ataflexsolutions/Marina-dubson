@@ -5,11 +5,19 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Phone, Mail, Star, ChevronLeft, ChevronRight } from 'lucide-react'
 
-export function MarinaHero({ bgImage = '/home-her-bg-latest.png', dividerImage = '/marina-hero-svg.png' }: { bgImage?: string; dividerImage?: string }) {
+export function MarinaHero({
+  bgImage = '/home-her-bg-latest.png',
+  dividerImage = '/marina-hero-svg.png',
+  imageClassName = 'object-cover object-center',
+}: {
+  bgImage?: string
+  dividerImage?: string
+  imageClassName?: string
+}) {
   return (
     <section className="relative w-full h-[1024px] flex items-center bg-[#f8f9fa] overflow-hidden">
       <div className="absolute inset-0 z-0">
-        <Image src={bgImage} alt="Marina Dubson" fill className="object-cover object-center" priority />
+        <Image src={bgImage} alt="Marina Dubson" fill className={imageClassName} priority />
         <div className="absolute inset-y-0 left-0 w-full md:w-2/3 bg-gradient-to-r from-black/60 via-black/40 to-transparent" />
       </div>
 
@@ -31,9 +39,6 @@ export function MarinaHero({ bgImage = '/home-her-bg-latest.png', dividerImage =
           <div className="pt-2 flex flex-wrap gap-4">
             <Link href="/contact" className="bg-[#D9C035] text-gray-900 px-8 py-4 rounded-md font-bold uppercase tracking-widest text-sm hover:bg-[#B8860B] transition-colors shadow-lg">
               Request a Court Reporter
-            </Link>
-            <Link href="/about" className="border border-white/70 text-white px-8 py-4 rounded-md font-bold uppercase tracking-widest text-sm hover:bg-white hover:text-[#B8860B] transition-colors">
-              View Resume
             </Link>
           </div>
         </div>
@@ -99,26 +104,31 @@ export function MarinaServicesGrid({ dark = true }: { dark?: boolean }) {
       title: 'Realtime Reporting',
       text: 'Instant, streaming transcription you can read as the words are spoken.',
       img: '/service-realtime.png',
+      href: '/services#realtime-reporting',
     },
     {
       title: 'Depositions',
       text: 'Verbatim deposition transcripts for civil and federal matters across New York.',
       img: '/service-depositions.png',
+      href: '/services#depositions',
     },
     {
       title: 'Arbitrations & Hearings',
       text: 'Reliable coverage for arbitrations, administrative hearings, and proceedings.',
       img: '/service-arbitrations.png',
+      href: '/services#arbitrations-hearings',
     },
     {
       title: 'CART Services',
       text: 'Communication Access Realtime Translation for schools, universities, and events.',
       img: '/service-cart.png',
+      href: '/services#cart-services',
     },
     {
       title: 'Transcript Production',
       text: 'End-to-end transcript preparation, from rough to certified final.',
       img: '/service-transcript.png',
+      href: '/services#transcript-production',
     },
   ]
 
@@ -145,18 +155,22 @@ export function MarinaServicesGrid({ dark = true }: { dark?: boolean }) {
 
         <div className="flex flex-wrap justify-center gap-6">
           {services.map((service) => (
-            <div key={service.title} className={`w-full sm:w-[300px] rounded-2xl border p-4 ${dark ? 'border-gray-900/20 bg-white/10' : 'border-[#B8860B]/30 bg-white'}`}>
+            <Link
+              key={service.title}
+              href={service.href}
+              className={`group w-full sm:w-[300px] rounded-2xl border p-4 transition-all hover:-translate-y-1 hover:shadow-lg ${dark ? 'border-gray-900/20 bg-white/10 hover:bg-white/20' : 'border-[#B8860B]/30 bg-white hover:border-[#B8860B]/60'}`}
+            >
               <div className="relative h-[220px] rounded-xl overflow-hidden mb-5">
                 <Image
                   src={service.img}
                   alt={service.title}
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
               <h3 className={`text-lg font-bold text-center mb-2 ${dark ? 'text-gray-950' : 'text-gray-950'}`}>{service.title}</h3>
               <p className={`text-sm font-medium leading-relaxed text-center ${dark ? 'text-gray-800' : 'text-gray-600'}`}>{service.text}</p>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

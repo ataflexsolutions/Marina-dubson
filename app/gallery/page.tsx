@@ -15,11 +15,11 @@ const imageFiles = [
     'JCP_MARINA-2675-20250508-Edit.jpg',
     'JCP_MARINA-2756-20250508-Edit.jpg',
     'JCP_MARINA-2685-20250508-Edit.jpg',
-    'JCP_MARINA-2758-20250508-Edit.jpg',
+    'JCP_MARINA-2758-20250508-Edit.png',
     'JCP_MARINA-2815-20250508.jpg',
     'JCP_MARINA-2882-20250508-Edit.jpg',
-    'JCP_MARINA-2891-20250508.jpg',
-    'JCP_MARINA-2905-20250508.jpg',
+    'JCP_MARINA-3143-20250508.jpg',
+    'JCP_MARINA-3148-20250508-Edit.jpg',
     'JCP_MARINA-2919-20250508.jpg',
     'JCP_MARINA-2957-20250508.jpg',
     'JCP_MARINA-2984-20250508.jpg',
@@ -31,7 +31,7 @@ const imageFiles = [
     'JCP_MARINA-3085-20250508.jpg',
     'JCP_MARINA-3087-20250508.jpg',
     'JCP_MARINA-3093-20250508.jpg',
-    'image-for-gallery.png',
+    'JCP_MARINA-3178-20250508-Edit.jpg',
 ]
 
 const focusPositions = [
@@ -41,8 +41,8 @@ const focusPositions = [
     'object-[50%_12%]',
     'object-[50%_35%]',
     'object-[50%_45%]',
-    'object-[52%_45%]',
-    'object-[50%_45%]',
+    'object-[50%_22%]',
+    'object-[50%_20%]',
     'object-[48%_45%]',
     'object-[52%_45%]',
     'object-[50%_40%]',
@@ -54,7 +54,7 @@ const focusPositions = [
     'object-[52%_36%]',
     'object-[48%_36%]',
     'object-[50%_36%]',
-    'object-[50%_40%]',
+    'object-[50%_18%]',
 ]
 
 export default function GalleryPage() {

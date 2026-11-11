@@ -63,7 +63,7 @@ export default function ServicesPage() {
                         </div>
 
                         <div className="grid gap-12 md:grid-cols-2 lg:gap-20">
-                            <article>
+                            <article id="realtime-reporting" className="scroll-mt-28">
                                 <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-md border border-[#B8860B] text-[#B8860B]">
                                     <Radio className="h-6 w-6" />
                                 </div>
@@ -78,7 +78,7 @@ export default function ServicesPage() {
                                 </p>
                             </article>
 
-                            <article>
+                            <article id="depositions" className="scroll-mt-28">
                                 <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-md border border-[#B8860B] text-[#B8860B]">
                                     <ClipboardList className="h-6 w-6" />
                                 </div>
@@ -100,7 +100,7 @@ export default function ServicesPage() {
                     </div>
                 </section>
 
-                <section className="overflow-hidden bg-[#D9C035] text-gray-900">
+                <section id="arbitrations-hearings" className="scroll-mt-28 overflow-hidden bg-[#D9C035] text-gray-900">
                     <div className="relative overflow-hidden">
                         <div className="absolute inset-0 z-0">
                             <Image
@@ -126,7 +126,7 @@ export default function ServicesPage() {
                         </div>
                     </div>
 
-                    <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 py-20 md:grid-cols-2 md:px-8 lg:gap-20 lg:py-28">
+                    <div id="cart-services" className="mx-auto grid max-w-7xl scroll-mt-28 items-center gap-12 px-4 py-20 md:grid-cols-2 md:px-8 lg:gap-20 lg:py-28">
                         <div className="relative mx-auto w-full max-w-[420px] h-[420px] rounded-2xl overflow-hidden">
                             <Image
                                 src="/cart-new-image.png"
@@ -150,7 +150,7 @@ export default function ServicesPage() {
                     </div>
                 </section>
 
-                <section className="relative bg-[#f4f6fa] pb-16 md:pb-24">
+                <section id="transcript-production" className="relative scroll-mt-28 bg-[#f4f6fa] pb-16 md:pb-24">
                     <div className="h-[220px] bg-[#D9C035]" />
                     <div className="relative z-10 mx-auto w-[90%] max-w-6xl -mt-[220px]">
                         <div className="relative min-h-[480px] overflow-hidden rounded-2xl flex items-center justify-center">
