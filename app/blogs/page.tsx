@@ -7,7 +7,7 @@ import { MarinaCTA } from '@/app/components/landing/MarinaHomepage'
 
 export const metadata: Metadata = {
     title: 'Blog | Court Reporting Insights from Marina Dubson',
-    description: 'Deposition best practices, proceeding checklists, transcript tips, and industry updates from New York stenographic court reporter Marina Dubson.',
+    description: 'Industry updates from the reporting room, not legal brief. I like industry updates from the reporting chair.',
 }
 
 const blogCards = [
@@ -82,7 +82,7 @@ export default function BlogsPage() {
                                 Insights
                             </h1>
                             <p className="mt-3 max-w-2xl text-sm font-medium text-white/80 md:text-base">
-                                Deposition best practices, proceeding checklists, and industry updates from the reporting room — not lawyer briefings.
+                                Industry updates from the reporting room, not legal brief. I like industry updates from the reporting chair.
                             </p>
                             <Link
                                 href="/contact"
