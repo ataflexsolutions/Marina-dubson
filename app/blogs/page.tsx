@@ -21,35 +21,35 @@ const blogCards = [
     {
         title: 'A Court Reporting Checklist',
         slug: 'court-reporting-checklist',
-        image: '/blog-2.jpg',
+        image: '/blog-2.png',
         date: 'March 3, 2024',
         excerpt: 'What to confirm before the job starts so coverage, logistics, and transcript delivery stay on track.',
     },
     {
         title: 'Keeping Proceedings Smooth',
         slug: 'keeping-proceedings-smooth',
-        image: '/blog-3.jpg',
+        image: '/blog-3.png',
         date: 'March 3, 2024',
         excerpt: 'Practical tips for quieter rooms, clearer speakers, and fewer interruptions when the record matters.',
     },
     {
         title: 'Avoiding Transcript Delays',
         slug: 'avoiding-transcript-delays',
-        image: '/blog-4.jpg',
+        image: '/blog-4.png',
         date: 'March 3, 2024',
         excerpt: 'How early coordination on roughs, dailies, and certified finals keeps turnaround predictable.',
     },
     {
         title: 'Realtime Without the Stress',
         slug: 'realtime-without-the-stress',
-        image: '/blog-5.jpg',
+        image: '/blog-5.png',
         date: 'March 3, 2024',
         excerpt: 'What counsel and coordinators can expect when Realtime is on — and how to get the most from the feed.',
     },
     {
         title: 'Notes from the Reporting Room',
         slug: 'notes-from-the-reporting-room',
-        image: '/blog-6.jpg',
+        image: '/blog-6.png',
         date: 'March 3, 2024',
         excerpt: 'Business updates, industry news, and field notes from day-to-day court reporting work in New York.',
     },
@@ -82,7 +82,7 @@ export default function BlogsPage() {
                                 Insights
                             </h1>
                             <p className="mt-3 max-w-2xl text-sm font-medium text-white/80 md:text-base">
-                            Industry updates from the reporting chair, not legal brief.
+                            Industry updates from the reporting chair.
                             </p>
                             <Link
                                 href="/contact"
