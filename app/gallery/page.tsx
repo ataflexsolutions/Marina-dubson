@@ -63,21 +63,23 @@ export default function GalleryPage() {
             <PublicHeader />
 
             <main>
-                <section className="relative flex min-h-[720px] lg:min-h-[860px] items-center overflow-hidden bg-[#0B0B0C]">
+                <section className="relative flex min-h-[640px] items-end overflow-hidden bg-[#0B0B0C] sm:min-h-[720px] md:items-center lg:min-h-[860px]">
                     <div className="absolute inset-0 z-0">
                         <Image
                             src="/gallery-hero.png"
                             alt="Marina Dubson professional gallery"
                             fill
                             priority
-                            className="object-cover object-center"
+                            sizes="100vw"
+                            className="object-cover object-[10%_22%] sm:object-[16%_25%] md:object-[35%_50%] lg:object-center"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-r from-black/35 via-black/30 to-black/65" />
+                        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80 md:hidden" />
+                        <div className="absolute inset-0 hidden bg-gradient-to-r from-black/35 via-black/30 to-black/65 md:block" />
                     </div>
 
-                    <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pt-28 md:px-8">
-                        <div className="ml-auto max-w-2xl text-white">
-                            <h1 className="text-4xl font-black uppercase leading-[0.98] tracking-tight md:text-6xl lg:text-[72px]">
+                    <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-28 pt-28 md:px-8 md:pb-12 md:pt-28">
+                        <div className="max-w-2xl text-white md:ml-auto">
+                            <h1 className="text-[1.65rem] font-black uppercase leading-[1.08] tracking-tight sm:text-4xl md:text-6xl lg:text-[72px] lg:leading-[0.98]">
                                 Proof{' '}
                                 <span className="text-transparent [-webkit-text-stroke:1.5px_white]">Of</span>
                                 <br />

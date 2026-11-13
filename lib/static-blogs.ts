@@ -95,7 +95,7 @@ export const staticBlogs: StaticBlog[] = [
     },
     {
         slug: 'notes-from-the-reporting-room',
-        title: 'Notes from the Reporting Room',
+        title: 'Notes from the Reporting chair',
         excerpt: 'Business updates, industry news, and field notes from day-to-day court reporting work in New York.',
         date: '2024-03-03',
         author: 'Marina Dubson',

@@ -47,8 +47,8 @@ const blogCards = [
         excerpt: 'What counsel and coordinators can expect when Realtime is on — and how to get the most from the feed.',
     },
     {
-        title: 'Notes from the Reporting Room',
-        slug: 'notes-from-the-reporting-room',
+        title: 'Notes from the Reporting chair',
+        slug: 'notes-from-the-reporting-chair',
         image: '/blog-6.png',
         date: 'March 3, 2024',
         excerpt: 'Business updates, industry news, and field notes from day-to-day court reporting work in New York.',
@@ -61,22 +61,23 @@ export default function BlogsPage() {
             <PublicHeader />
 
             <main>
-                <section className="relative flex min-h-[720px] items-center overflow-hidden bg-[#101820] lg:min-h-[860px]">
+                <section className="relative flex min-h-[640px] items-end overflow-hidden bg-[#101820] sm:min-h-[720px] md:items-center lg:min-h-[860px]">
                     <div className="absolute inset-0 z-0">
                         <Image
                             src="/blog-hero-bg.png"
                             alt="Court reporting insights from Marina Dubson"
                             fill
                             priority
-                            className="object-cover object-center"
+                            sizes="100vw"
+                            className="object-cover object-[38%_12%] sm:object-[42%_15%] md:object-center"
                         />
                         <div className="absolute inset-0 bg-black/45" />
-                        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/55 to-transparent" />
+                        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent" />
                     </div>
 
-                    <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pt-24 md:px-8">
-                        <div className="ml-auto max-w-3xl text-white">
-                            <h1 className="text-4xl font-black uppercase leading-[0.95] tracking-tight md:text-6xl lg:text-[72px]">
+                    <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-28 pt-28 md:px-8 md:pb-12 md:pt-24">
+                        <div className="max-w-3xl text-white md:ml-auto">
+                            <h1 className="text-[1.65rem] font-black uppercase leading-[1.08] tracking-tight sm:text-4xl md:text-6xl lg:text-[72px] lg:leading-[0.95]">
                                 Court <span className="text-transparent [-webkit-text-stroke:1.4px_white]">Reporting</span>
                                 <br />
                                 Insights
@@ -86,7 +87,7 @@ export default function BlogsPage() {
                             </p>
                             <Link
                                 href="/contact"
-                                className="mt-16 inline-flex items-center justify-center rounded-md border border-white/80 px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-[#B8860B]"
+                                className="mt-8 inline-flex items-center justify-center rounded-md border border-white/80 px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-[#B8860B] md:mt-16"
                             >
                                 Contact Marina
                             </Link>

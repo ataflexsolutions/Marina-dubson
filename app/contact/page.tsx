@@ -49,23 +49,25 @@ export default function ContactPage() {
                 {/* ══════════════════════════════════════════════════════════
                     HERO — full-bleed image, text on left only
                 ══════════════════════════════════════════════════════════ */}
-                <section className="relative w-full h-[1024px] flex items-center overflow-hidden">
+                <section className="relative flex w-full min-h-[640px] items-end overflow-hidden sm:min-h-[720px] md:items-center lg:h-[1024px]">
                     {/* background — same treatment as home hero */}
                     <div className="absolute inset-0 z-0">
                         <Image
                             src="/contact-us-hero.png"
                             alt="Marina Dubson at her desk"
                             fill
-                            className="object-cover object-top"
+                            sizes="100vw"
+                            className="object-cover object-[8%_18%] sm:object-[14%_12%] md:object-[left_top] lg:object-top"
                             priority
                         />
-                        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent w-full md:w-2/3" />
+                        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80 md:hidden" />
+                        <div className="absolute inset-0 hidden w-full bg-gradient-to-r from-black/60 via-black/40 to-transparent md:block md:w-2/3" />
                     </div>
 
                     {/* left-side text content */}
-                    <div className="relative z-10 w-full mx-auto max-w-6xl px-4 md:px-8 pt-32 pb-28 md:pt-44 md:pb-36">
+                    <div className="relative z-10 mx-auto w-full max-w-6xl px-4 pb-28 pt-28 md:px-8 md:pb-36 md:pt-44">
                         <div className="max-w-md">
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black uppercase leading-[1.1] text-white mb-6">
+                            <h1 className="mb-6 text-[1.65rem] font-black uppercase leading-[1.1] text-white sm:text-4xl md:text-5xl lg:text-6xl">
                                 Request a{' '}
                                 <span
                                     className="text-transparent"

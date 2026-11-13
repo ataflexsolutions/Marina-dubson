@@ -23,21 +23,23 @@ export default function AboutPage() {
             <PublicHeader />
 
             <main>
-                <section className="relative flex min-h-[720px] lg:min-h-[860px] items-center overflow-hidden bg-[#0B0B0C]">
+                <section className="relative flex min-h-[640px] items-end overflow-hidden bg-[#0B0B0C] sm:min-h-[720px] md:items-center lg:min-h-[860px]">
                     <div className="absolute inset-0 z-0">
                         <Image
                             src="/about-us-hero-bg.png"
                             alt="Marina Dubson preparing legal documents"
                             fill
                             priority
-                            className="object-cover object-top"
+                            sizes="100vw"
+                            className="object-cover object-[8%_18%] sm:object-[12%_12%] md:object-[left_top] lg:object-top"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-r from-black/15 via-black/30 to-black/60" />
+                        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80 md:hidden" />
+                        <div className="absolute inset-0 hidden bg-gradient-to-r from-black/15 via-black/30 to-black/60 md:block" />
                     </div>
 
-                    <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pt-28 md:px-8">
-                        <div className="ml-auto max-w-3xl text-white lg:pr-8">
-                            <h1 className="text-4xl font-black uppercase leading-[0.98] tracking-tight md:text-6xl lg:text-[64px]">
+                    <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-28 pt-28 md:px-8 md:pb-12 md:pt-28">
+                        <div className="max-w-3xl text-white md:ml-auto lg:pr-8">
+                            <h1 className="text-[1.65rem] font-black uppercase leading-[1.08] tracking-tight sm:text-4xl md:text-6xl lg:text-[64px] lg:leading-[0.98]">
                                 <span className="text-white">New York </span>
                                 <span className="text-transparent [-webkit-text-stroke:1.5px_white]">Court Reporter</span>{' '}
                                 <span className="text-white">Specializing</span>{' '}

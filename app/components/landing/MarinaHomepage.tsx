@@ -8,14 +8,15 @@ import { Phone, Mail, Star, ChevronLeft, ChevronRight } from 'lucide-react'
 export function MarinaHero({
   bgImage = '/home-her-bg-latest.jpeg',
   dividerImage = '/marina-hero-svg.png',
-  imageClassName = 'object-cover object-[center_30%]',
+  // Home subject sits on the right — pin her face on mobile, keep wider crop on desktop
+  imageClassName = 'object-cover object-[78%_36%] sm:object-[70%_34%] md:object-[60%_32%] lg:object-[center_30%]',
 }: {
   bgImage?: string
   dividerImage?: string
   imageClassName?: string
 }) {
   return (
-    <section className="relative flex w-full items-center overflow-hidden bg-[#f8f9fa] min-h-[720px] sm:min-h-[820px] lg:min-h-0 lg:aspect-[1487/1058]">
+    <section className="relative flex w-full items-end overflow-hidden bg-[#f8f9fa] min-h-[640px] sm:min-h-[720px] md:items-center lg:min-h-0 lg:aspect-[1487/1058]">
       <div className="absolute inset-0 z-0">
         <Image
           src={bgImage}
@@ -25,13 +26,14 @@ export function MarinaHero({
           className={imageClassName}
           priority
         />
-        <div className="absolute inset-y-0 left-0 w-full md:w-2/3 bg-gradient-to-r from-black/60 via-black/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/40 to-black/75 md:hidden" />
+        <div className="absolute inset-y-0 left-0 hidden w-full bg-gradient-to-r from-black/60 via-black/40 to-transparent md:block md:w-2/3" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 w-full">
-        <div className="mr-auto text-white pt-24 pb-12 lg:pt-32 lg:pb-0 lg:max-w-[703px] flex flex-col gap-6">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-28 pt-28 md:px-8 md:pb-12 lg:pb-0 lg:pt-32">
+        <div className="mr-auto flex max-w-xl flex-col gap-4 text-white sm:gap-6 lg:max-w-[703px]">
           <h1
-            className="text-4xl md:text-6xl lg:text-[64px] font-bold uppercase leading-[1.1] lg:leading-[68px] tracking-tight lg:tracking-[-0.03em] font-poppins drop-shadow-md lg:w-[703px]"
+            className="text-[1.65rem] font-bold uppercase leading-[1.12] tracking-tight font-poppins drop-shadow-md sm:text-4xl md:text-6xl lg:w-[703px] lg:text-[64px] lg:leading-[68px] lg:tracking-[-0.03em]"
           >
             <span className="text-white">New York </span>
             <span className="text-transparent [-webkit-text-stroke:1.5px_white]">Court</span>{' '}
@@ -40,10 +42,10 @@ export function MarinaHero({
             <span className="text-white">Depositions &amp; CART</span>{' '}
             <span className="text-transparent [-webkit-text-stroke:1.5px_white]">Services</span>
           </h1>
-          <p className="text-base md:text-lg text-white/90 font-medium max-w-xl leading-relaxed drop-shadow-md">
+          <p className="max-w-xl text-sm font-medium leading-relaxed text-white/90 drop-shadow-md sm:text-base md:text-lg">
             Accurate, verbatim, and on time — every assignment, every word. Marina Dubson is a stenographic court reporter based in New York City, delivering Realtime reporting, depositions, arbitrations, hearings, and CART services with the precision that complex legal proceedings demand.
           </p>
-          <div className="pt-2 flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-4 pt-1">
             <Link href="/contact" className="bg-[#D9C035] text-gray-900 px-8 py-4 rounded-md font-bold uppercase tracking-widest text-sm hover:bg-[#B8860B] transition-colors shadow-lg">
               Request a Court Reporter
             </Link>

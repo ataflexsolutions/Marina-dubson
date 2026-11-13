@@ -189,7 +189,7 @@ export default function NotableExperiencePage() {
                 <MarinaHero
                     bgImage="/notable.png"
                     dividerImage="/services-hero-svg.png"
-                    imageClassName="object-cover object-right"
+                    imageClassName="object-cover object-[88%_22%] sm:object-[85%_20%] md:object-right"
                 />
 
                 {/* Intro / contact strip */}
