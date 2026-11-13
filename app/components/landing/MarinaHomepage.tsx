@@ -6,18 +6,25 @@ import Link from 'next/link'
 import { Phone, Mail, Star, ChevronLeft, ChevronRight } from 'lucide-react'
 
 export function MarinaHero({
-  bgImage = '/home-her-bg-latest.png',
+  bgImage = '/home-her-bg-latest.jpeg',
   dividerImage = '/marina-hero-svg.png',
-  imageClassName = 'object-cover object-center',
+  imageClassName = 'object-cover object-[center_30%]',
 }: {
   bgImage?: string
   dividerImage?: string
   imageClassName?: string
 }) {
   return (
-    <section className="relative w-full h-[1024px] flex items-center bg-[#f8f9fa] overflow-hidden">
+    <section className="relative flex w-full items-center overflow-hidden bg-[#f8f9fa] min-h-[720px] sm:min-h-[820px] lg:min-h-0 lg:aspect-[1487/1058]">
       <div className="absolute inset-0 z-0">
-        <Image src={bgImage} alt="Marina Dubson" fill className={imageClassName} priority />
+        <Image
+          src={bgImage}
+          alt="Marina Dubson"
+          fill
+          sizes="100vw"
+          className={imageClassName}
+          priority
+        />
         <div className="absolute inset-y-0 left-0 w-full md:w-2/3 bg-gradient-to-r from-black/60 via-black/40 to-transparent" />
       </div>
 
