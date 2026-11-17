@@ -46,7 +46,7 @@ export default function ReporterRegisterPage() {
 
             if (response.ok) {
                 setSuccess(true)
-                setTimeout(() => router.push('/login'), 2000)
+                // Do not auto-login — reporter must wait for admin approval
             } else {
                 const data = await response.json()
                 setError(data.error || 'Identity verification failed.')
@@ -83,10 +83,18 @@ export default function ReporterRegisterPage() {
                     {success ? (
                         <div className="text-center py-12 animate-in zoom-in-95 duration-500">
                             <div className="h-24 w-24 bg-emerald-500/10 rounded-[2.5rem] flex items-center justify-center mx-auto mb-8 border border-emerald-500/20">
-                                <CheckCircle2 className="h-12 w-12 text-emerald-500 animate-bounce" />
+                                <CheckCircle2 className="h-12 w-12 text-emerald-500" />
                             </div>
-                            <h2 className="text-2xl font-black text-gray-900 uppercase tracking-tight">Access Provisioned</h2>
-                            <p className="text-gray-500 font-bold mt-3 uppercase tracking-widest text-[10px]">Onboarding sequence initiated...</p>
+                            <h2 className="text-2xl font-black text-gray-900 uppercase tracking-tight">Application Received</h2>
+                            <p className="text-gray-500 font-bold mt-3 uppercase tracking-widest text-[10px] leading-relaxed max-w-sm mx-auto">
+                                Your reporter account is pending admin approval. You will be able to sign in after Marina reviews your application.
+                            </p>
+                            <Link
+                                href="/login"
+                                className="inline-flex mt-8 text-[10px] font-black uppercase tracking-widest text-emerald-600 hover:underline"
+                            >
+                                Back to login
+                            </Link>
                         </div>
                     ) : (
                         <form onSubmit={handleSubmit} className="space-y-8">
@@ -125,15 +133,16 @@ export default function ReporterRegisterPage() {
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div className="space-y-3">
-                                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-2">Primary Certification</label>
+                                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-2">
+                                        Certifications <span className="text-gray-300">(optional)</span>
+                                    </label>
                                     <div className="relative group">
                                         <Briefcase className="absolute left-6 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 group-focus-within:text-emerald-600 transition-colors" />
                                         <input
-                                            required
                                             value={formData.certification}
                                             onChange={(e) => setFormData({ ...formData, certification: e.target.value })}
                                             className="luxury-input pl-16 focus:border-emerald-100 focus:ring-emerald-50/50"
-                                            placeholder="CSR / RPR / CRR"
+                                            placeholder="e.g. CSR, RPR, CRR — or leave blank"
                                         />
                                     </div>
                                 </div>

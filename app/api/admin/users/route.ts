@@ -133,7 +133,9 @@ export async function POST(request: NextRequest) {
                 lastName: data.lastName,
                 role: data.role,
                 company: data.company,
-                certification: data.certification
+                certification: data.certification,
+                // Admin-created accounts are pre-approved
+                approvalStatus: 'APPROVED',
             }
         })
 

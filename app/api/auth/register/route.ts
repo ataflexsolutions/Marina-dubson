@@ -30,8 +30,9 @@ export async function POST(request: NextRequest) {
         }
 
         const hashedPassword = await hashPassword(data.password)
+        const isReporter = data.role === 'REPORTER'
 
-        // Create user first
+        // Create user first — self-signup reporters require admin approval
         const user = await prisma.user.create({
             data: {
                 email: data.email,
@@ -40,7 +41,8 @@ export async function POST(request: NextRequest) {
                 lastName: data.lastName,
                 role: data.role,
                 company: data.company,
-                certification: data.certification
+                certification: data.certification || null,
+                approvalStatus: isReporter ? 'PENDING' : 'APPROVED',
             }
         })
 
@@ -73,16 +75,25 @@ export async function POST(request: NextRequest) {
             }
         }
 
-        // Send Welcome Email
+        // Welcome email — reporters get a pending notice instead of full access welcome
         try {
-            const loginLink = `${process.env.NEXT_PUBLIC_APP_URL || 'https://marina-dubson.vercel.app'}/login`
-            const emailTemplate = emailTemplates.welcomeEmail(user.firstName, user.role, loginLink)
-
-            await sendEmail({
-                to: user.email,
-                subject: emailTemplate.subject,
-                html: emailTemplate.html
-            })
+            const loginLink = `${process.env.NEXT_PUBLIC_APP_URL || 'https://dubsonstenoservices.com'}/login`
+            if (isReporter) {
+                await sendEmail({
+                    to: user.email,
+                    subject: 'Reporter application received — pending approval',
+                    html: `<p>Hi ${user.firstName},</p>
+                           <p>Thanks for applying to join Marina Dubson’s reporter network. Your account is <strong>pending admin approval</strong>.</p>
+                           <p>You will be able to sign in at <a href="${loginLink}">${loginLink}</a> once approved.</p>`
+                })
+            } else {
+                const emailTemplate = emailTemplates.welcomeEmail(user.firstName, user.role, loginLink)
+                await sendEmail({
+                    to: user.email,
+                    subject: emailTemplate.subject,
+                    html: emailTemplate.html
+                })
+            }
         } catch (emailError) {
             console.error('Failed to send welcome email:', emailError)
             // Log but don't fail registration
@@ -91,17 +102,31 @@ export async function POST(request: NextRequest) {
         // Notify admin of new signup
         try {
             const adminEmail = process.env.ADMIN_EMAIL || 'admin@marinadubson.com'
-            await sendEmail({
-                to: adminEmail,
-                subject: `New ${data.role === 'AGENCY' ? 'agency' : (data.clientType || 'PRIVATE')} signup: ${user.firstName} ${user.lastName}`,
-                html: `<p>A new ${data.role === 'AGENCY' ? 'agency contact' : 'client'} has registered.</p>
-                       <ul>
-                         <li>Name: ${user.firstName} ${user.lastName}</li>
-                         <li>Email: ${user.email}</li>
-                         <li>Client Type: ${data.clientType || (data.role === 'AGENCY' ? 'AGENCY' : 'PRIVATE')}</li>
-                         <li>Company: ${data.company || '—'}</li>
-                       </ul>`
-            })
+            if (isReporter) {
+                await sendEmail({
+                    to: adminEmail,
+                    subject: `Reporter application pending: ${user.firstName} ${user.lastName}`,
+                    html: `<p>A new reporter signed up and is waiting for approval.</p>
+                           <ul>
+                             <li>Name: ${user.firstName} ${user.lastName}</li>
+                             <li>Email: ${user.email}</li>
+                             <li>Certification: ${user.certification || 'Not provided'}</li>
+                           </ul>
+                           <p>Review under Admin → Reporters.</p>`
+                })
+            } else {
+                await sendEmail({
+                    to: adminEmail,
+                    subject: `New ${data.role === 'AGENCY' ? 'agency' : (data.clientType || 'PRIVATE')} signup: ${user.firstName} ${user.lastName}`,
+                    html: `<p>A new ${data.role === 'AGENCY' ? 'agency contact' : 'client'} has registered.</p>
+                           <ul>
+                             <li>Name: ${user.firstName} ${user.lastName}</li>
+                             <li>Email: ${user.email}</li>
+                             <li>Client Type: ${data.clientType || (data.role === 'AGENCY' ? 'AGENCY' : 'PRIVATE')}</li>
+                             <li>Company: ${data.company || '—'}</li>
+                           </ul>`
+                })
+            }
         } catch (notifyError) {
             console.error('Admin notification failed:', notifyError)
         }
@@ -111,7 +136,9 @@ export async function POST(request: NextRequest) {
             email: user.email,
             firstName: user.firstName,
             lastName: user.lastName,
-            role: user.role
+            role: user.role,
+            approvalStatus: user.approvalStatus,
+            pendingApproval: isReporter,
         }, { status: 201 })
     } catch (error: any) {
         if (error instanceof z.ZodError) {

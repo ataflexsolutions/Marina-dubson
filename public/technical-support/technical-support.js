@@ -203,13 +203,19 @@
     el.awarePage = rootEl.querySelector('[data-ts="awarePage"]');
     el.awareRole = rootEl.querySelector('[data-ts="awareRole"]');
 
-    el.launcher.addEventListener("click", function(){
+    el.launcher.addEventListener("click", function(e){
+      if (el.launcher.getAttribute("data-ts-dragging") === "1") {
+        el.launcher.removeAttribute("data-ts-dragging");
+        return;
+      }
       el.panel.hidden = false; el.launcher.style.display = "none";
+      applySavedPosition(el.panel);
       if (!el.stream.children.length) greet();
       el.input.focus();
     });
     rootEl.querySelector('[data-ts="close"]').addEventListener("click", function(){
       el.panel.hidden = true; el.launcher.style.display = "";
+      applySavedPosition(el.launcher);
     });
     el.chips.addEventListener("click", function(e){
       var c = e.target.closest(".ts-chip"); if (c) send(c.textContent);
@@ -222,7 +228,93 @@
     });
     el.form.addEventListener("submit", function(e){ e.preventDefault(); send(el.input.value); });
 
+    enableDrag(el.launcher);
+    applySavedPosition(el.launcher);
     syncAware();
+  }
+
+  var POS_KEY = "md_ts_widget_pos";
+
+  function readPos(){
+    try {
+      var raw = localStorage.getItem(POS_KEY);
+      if (!raw) return null;
+      var p = JSON.parse(raw);
+      if (typeof p.left === "number" && typeof p.top === "number") return p;
+    } catch (e) {}
+    return null;
+  }
+
+  function savePos(left, top){
+    try { localStorage.setItem(POS_KEY, JSON.stringify({ left: left, top: top })); } catch (e) {}
+  }
+
+  function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
+
+  function applySavedPosition(node){
+    if (!node) return;
+    var p = readPos();
+    if (!p) return;
+    var rect = node.getBoundingClientRect();
+    var left = clamp(p.left, 8, Math.max(8, window.innerWidth - rect.width - 8));
+    var top = clamp(p.top, 8, Math.max(8, window.innerHeight - rect.height - 8));
+    node.style.left = left + "px";
+    node.style.top = top + "px";
+    node.style.right = "auto";
+    node.style.bottom = "auto";
+  }
+
+  function enableDrag(node){
+    if (!node) return;
+    var startX = 0, startY = 0, origLeft = 0, origTop = 0, moved = false;
+
+    function onPointerDown(e){
+      if (e.button != null && e.button !== 0) return;
+      var rect = node.getBoundingClientRect();
+      startX = e.clientX; startY = e.clientY;
+      origLeft = rect.left; origTop = rect.top;
+      moved = false;
+      node.setAttribute("data-ts-dragging", "0");
+      node.classList.add("ts-dragging");
+      node.setPointerCapture && node.setPointerCapture(e.pointerId);
+      window.addEventListener("pointermove", onPointerMove);
+      window.addEventListener("pointerup", onPointerUp);
+    }
+
+    function onPointerMove(e){
+      var dx = e.clientX - startX;
+      var dy = e.clientY - startY;
+      if (!moved && (Math.abs(dx) > 4 || Math.abs(dy) > 4)) {
+        moved = true;
+        node.setAttribute("data-ts-dragging", "1");
+      }
+      if (!moved) return;
+      e.preventDefault();
+      var rect = node.getBoundingClientRect();
+      var left = clamp(origLeft + dx, 8, Math.max(8, window.innerWidth - rect.width - 8));
+      var top = clamp(origTop + dy, 8, Math.max(8, window.innerHeight - rect.height - 8));
+      node.style.left = left + "px";
+      node.style.top = top + "px";
+      node.style.right = "auto";
+      node.style.bottom = "auto";
+    }
+
+    function onPointerUp(){
+      window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("pointerup", onPointerUp);
+      node.classList.remove("ts-dragging");
+      if (moved) {
+        var rect = node.getBoundingClientRect();
+        savePos(rect.left, rect.top);
+        // keep flag until click handler runs, then clear
+        setTimeout(function(){ node.removeAttribute("data-ts-dragging"); }, 0);
+      } else {
+        node.removeAttribute("data-ts-dragging");
+      }
+    }
+
+    node.style.touchAction = "none";
+    node.addEventListener("pointerdown", onPointerDown);
   }
 
   /* ---------- public API ---------- */

@@ -34,12 +34,13 @@
 
 .ts-root *{box-sizing:border-box}
 
-/* launcher */
+/* launcher — draggable; position can be overridden via inline left/top */
 .ts-launcher{position:fixed;right:24px;bottom:24px;z-index:2147483000;display:inline-flex;align-items:center;
   gap:10px;padding:13px 20px 13px 16px;border:0;border-radius:999px;color:#fff;font-weight:600;font-size:14.5px;
-  font-family:var(--ts-sans);cursor:pointer;background:linear-gradient(135deg,var(--ts-accent),#7c3aed);
-  box-shadow:var(--ts-shadow-lg);transition:transform .18s}
+  font-family:var(--ts-sans);cursor:grab;background:linear-gradient(135deg,var(--ts-accent),#7c3aed);
+  box-shadow:var(--ts-shadow-lg);transition:transform .18s;user-select:none;-webkit-user-select:none;touch-action:none}
 .ts-launcher:hover{transform:translateY(-2px)}
+.ts-launcher.ts-dragging{cursor:grabbing;transition:none;transform:none;opacity:.95}
 .ts-launcher .ts-dot{width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.22);
   display:grid;place-items:center;font-size:13px}
 

@@ -37,12 +37,18 @@ export async function PATCH(
     { params }: { params: { id: string } }
 ) {
     try {
+        const token = request.headers.get('authorization')?.replace('Bearer ', '')
+        const payload = token ? verifyToken(token) : null
+        if (!payload || !['ADMIN', 'MANAGER', 'SUPER_ADMIN'].includes(String(payload.role || '').toUpperCase())) {
+            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+        }
+
         const id = params.id
         const body = await request.json()
         const {
             firstName, lastName, email, avatar, certification, company, bio,
             portfolio, availability, basePageRate, baseAppearanceFee,
-            baseMinimumFee, paymentPreference, taxId
+            baseMinimumFee, paymentPreference, taxId, approvalStatus
         } = body
 
         const updateData: any = {
@@ -55,12 +61,21 @@ export async function PATCH(
             bio,
             portfolio,
             availability,
-            basePageRate: basePageRate ? parseFloat(basePageRate) : undefined,
-            baseAppearanceFee: baseAppearanceFee ? parseFloat(baseAppearanceFee) : undefined,
-            baseMinimumFee: baseMinimumFee ? parseFloat(baseMinimumFee) : undefined,
+            basePageRate: basePageRate !== undefined && basePageRate !== null && basePageRate !== '' ? parseFloat(basePageRate) : undefined,
+            baseAppearanceFee: baseAppearanceFee !== undefined && baseAppearanceFee !== null && baseAppearanceFee !== '' ? parseFloat(baseAppearanceFee) : undefined,
+            baseMinimumFee: baseMinimumFee !== undefined && baseMinimumFee !== null && baseMinimumFee !== '' ? parseFloat(baseMinimumFee) : undefined,
             paymentPreference,
-            taxId
+            taxId,
         }
+
+        if (approvalStatus && ['PENDING', 'APPROVED', 'REJECTED'].includes(approvalStatus)) {
+            updateData.approvalStatus = approvalStatus
+        }
+
+        // Drop undefined keys so partial updates (approve/reject) don't wipe fields
+        Object.keys(updateData).forEach((key) => {
+            if (updateData[key] === undefined) delete updateData[key]
+        })
 
         if (body.contact) {
             updateData.contact = {
@@ -102,9 +117,29 @@ export async function DELETE(
     { params }: { params: { id: string } }
 ) {
     try {
+        const token = request.headers.get('authorization')?.replace('Bearer ', '')
+        const payload = token ? verifyToken(token) : null
+        if (!payload || !['ADMIN', 'MANAGER', 'SUPER_ADMIN'].includes(String(payload.role || '').toUpperCase())) {
+            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+        }
+
         const id = params.id
-        await prisma.user.delete({ where: { id } })
-        return NextResponse.json({ message: 'User deleted successfully' })
+        try {
+            await prisma.user.delete({ where: { id } })
+            return NextResponse.json({ message: 'User deleted successfully', removed: true })
+        } catch (deleteError) {
+            // If FK constraints block hard delete, reject/block the account instead
+            console.warn('Hard delete failed, rejecting account instead:', deleteError)
+            await prisma.user.update({
+                where: { id },
+                data: { approvalStatus: 'REJECTED' },
+            })
+            return NextResponse.json({
+                message: 'User could not be fully erased (linked records). Account blocked instead.',
+                removed: false,
+                approvalStatus: 'REJECTED',
+            })
+        }
     } catch (error) {
         console.error('Delete user error:', error)
         return NextResponse.json({ error: 'Internal server error' }, { status: 500 })

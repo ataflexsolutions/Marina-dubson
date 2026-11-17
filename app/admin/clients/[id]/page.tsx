@@ -534,8 +534,14 @@ export default function UserProfilePage() {
                     <div className="glass-panel rounded-[3.5rem] overflow-hidden border border-gray-100 bg-white shadow-xl">
                         <div className="px-10 py-8 border-b border-gray-100 bg-slate-50/50 flex items-center justify-between">
                             <div>
-                                <h3 className="text-sm font-black text-gray-900 uppercase tracking-[0.3em] mb-1">Operational Directives</h3>
-                                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest italic">Client-specific mission tasking & requirements</p>
+                                <h3 className="text-sm font-black text-gray-900 uppercase tracking-[0.3em] mb-1">
+                                    {user.role === 'REPORTER' ? 'Assigned Tasks' : 'Assigned Tasks'}
+                                </h3>
+                                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest italic">
+                                    {user.role === 'REPORTER'
+                                        ? 'Internal to-dos and follow-ups for this reporter'
+                                        : 'Internal to-dos and follow-ups for this contact'}
+                                </p>
                             </div>
                             <button
                                 onClick={() => setShowTaskModal(true)}
@@ -548,7 +554,7 @@ export default function UserProfilePage() {
                             {!user.assignedTasks || user.assignedTasks.length === 0 ? (
                                 <div className="py-20 text-center">
                                     <Briefcase className="h-16 w-16 text-gray-100 mx-auto mb-6" />
-                                    <p className="text-xs font-black text-gray-400 uppercase tracking-widest italic">No Directives Assigned</p>
+                                    <p className="text-xs font-black text-gray-400 uppercase tracking-widest italic">No tasks assigned</p>
                                 </div>
                             ) : (
                                 user.assignedTasks?.map((task: any) => (
@@ -588,8 +594,8 @@ export default function UserProfilePage() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <StatsCard title="Completed Objectives" value={user.assignedTasks?.filter((t: any) => t.status === 'COMPLETED')?.length || 0} icon={<CheckCircle className="text-primary h-6 w-6" />} />
-                        <StatsCard title="Active Assignments" value={user.assignedTasks?.filter((t: any) => t.status !== 'COMPLETED')?.length || 0} icon={<Target className="text-amber-500 h-6 w-6" />} />
+                        <StatsCard title="Completed Tasks" value={user.assignedTasks?.filter((t: any) => t.status === 'COMPLETED')?.length || 0} icon={<CheckCircle className="text-primary h-6 w-6" />} />
+                        <StatsCard title="Open Tasks" value={user.assignedTasks?.filter((t: any) => t.status !== 'COMPLETED')?.length || 0} icon={<Target className="text-amber-500 h-6 w-6" />} />
                     </div>
 
                     {/* Service Pricing Matrix (Requirement 8) */}

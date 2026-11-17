@@ -79,6 +79,19 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: 'Auth failed' }, { status: 401 })
         }
 
+        if (user.approvalStatus === 'PENDING') {
+            return NextResponse.json(
+                { error: 'Your account is pending admin approval. You will be able to sign in once approved.' },
+                { status: 403 }
+            )
+        }
+        if (user.approvalStatus === 'REJECTED') {
+            return NextResponse.json(
+                { error: 'This account is not authorized. Contact the administrator if you believe this is a mistake.' },
+                { status: 403 }
+            )
+        }
+
         // If a clientType was explicitly selected, enforce match strictly (including missing mapping)
         if (clientType) {
             const registeredType = user.contact?.clientType
