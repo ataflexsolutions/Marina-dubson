@@ -90,7 +90,7 @@ export async function POST(
                                     Best regards,<br>
                                     <strong>Marina Dubson Stenographic Services</strong><br>
                                     (917) 494-1859<br>
-                                    MarinaDubson@gmail.com
+                                    marina@dubsonstenoservices.com
                                 </p>
                             </div>
                             <div style="background: #1f2937; padding: 20px; text-align: center; color: white; font-size: 12px;">
@@ -127,7 +127,7 @@ export async function POST(
                                     Best regards,<br>
                                     <strong>Marina Dubson Stenographic Services</strong><br>
                                     (917) 494-1859<br>
-                                    MarinaDubson@gmail.com
+                                    marina@dubsonstenoservices.com
                                 </p>
                             </div>
                             <div style="background: #1f2937; padding: 20px; text-align: center; color: white; font-size: 12px;">

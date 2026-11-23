@@ -69,7 +69,7 @@ export default function InvoiceDetailPage() {
                             <p>12A Saturn Lane</p>
                             <p>Staten Island, NY 10314</p>
                             <p>(917) 494-1859</p>
-                            <p>MarinaDubson@gmail.com</p>
+                            <p>marina@dubsonstenoservices.com</p>
                         </div>
                     </div>
                     <div className="text-right">

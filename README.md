@@ -305,7 +305,7 @@ npm run build
 ## 📞 Support
 
 For issues or questions:
-- Email: MarinaDubson@gmail.com
+- Email: marina@dubsonstenoservices.com
 - Phone: (917) 494-1859
 
 ## 📄 License

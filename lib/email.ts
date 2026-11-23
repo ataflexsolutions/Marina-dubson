@@ -86,7 +86,7 @@ export const emailTemplates = {
             Best regards,<br>
             <strong>Marina Dubson Stenographic Services</strong><br>
             (917) 494-1859<br>
-            MarinaDubson@gmail.com
+            marina@dubsonstenoservices.com
           </p>
         </div>
         
@@ -170,7 +170,7 @@ export const emailTemplates = {
             Best regards,<br>
             <strong>Marina Dubson Stenographic Services</strong><br>
             (917) 494-1859<br>
-            MarinaDubson@gmail.com
+            marina@dubsonstenoservices.com
           </p>
         </div>
         
@@ -206,7 +206,7 @@ export const emailTemplates = {
             Best regards,<br>
             <strong>Marina Dubson Stenographic Services</strong><br>
             (917) 494-1859<br>
-            MarinaDubson@gmail.com
+            marina@dubsonstenoservices.com
           </p>
         </div>
         
@@ -259,7 +259,7 @@ export const emailTemplates = {
             Best regards,<br>
             <strong>Marina Dubson Stenographic Services</strong><br>
             (917) 494-1859<br>
-            MarinaDubson@gmail.com
+            marina@dubsonstenoservices.com
           </p>
         </div>
         
@@ -299,7 +299,7 @@ export const emailTemplates = {
             Best regards,<br>
             <strong>Marina Dubson Stenographic Services</strong><br>
             (917) 494-1859<br>
-            MarinaDubson@gmail.com
+            marina@dubsonstenoservices.com
           </p>
         </div>
         

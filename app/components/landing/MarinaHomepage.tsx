@@ -307,7 +307,7 @@ export function MarinaContact({ dark = false }: { dark?: boolean }) {
                 </div>
                 <div className={`flex items-center gap-4 ${dark ? 'text-white/90' : 'text-gray-800'}`}>
                   <Mail className="h-5 w-5 text-[#B8860B] flex-shrink-0" />
-                  <span className="font-semibold text-lg leading-none">MarinaDubson@gmail.com</span>
+                  <span className="font-semibold text-lg leading-none">marina@dubsonstenoservices.com</span>
                 </div>
               </div>
             </div>

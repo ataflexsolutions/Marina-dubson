@@ -15,7 +15,7 @@ const updateSchema = z.object({
 const defaults = {
     companyName: 'Marina Dubson Stenographic Services',
     phone: '(917) 494-1859',
-    email: 'MarinaDubson@gmail.com',
+    email: 'marina@dubsonstenoservices.com',
     address: '12A Saturn Lane, Staten Island, NY',
     bio: 'Elite stenographic support for modern legal workflows.',
 }

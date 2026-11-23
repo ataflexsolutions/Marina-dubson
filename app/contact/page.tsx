@@ -131,8 +131,8 @@ export default function ContactPage() {
                                         <div className="h-9 w-9 rounded-full border-2 border-gray-900/40 flex items-center justify-center shrink-0">
                                             <Mail className="h-4 w-4 text-gray-900" />
                                         </div>
-                                        <a href="mailto:MarinaDubson@gmail.com" className="text-base font-semibold text-gray-900 hover:underline break-all">
-                                            MarinaDubson@gmail.com
+                                        <a href="mailto:marina@dubsonstenoservices.com" className="text-base font-semibold text-gray-900 hover:underline break-all">
+                                            marina@dubsonstenoservices.com
                                         </a>
                                     </div>
 

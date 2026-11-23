@@ -347,7 +347,7 @@ export function LandingContact() {
     const [contactInfo, setContactInfo] = useState({
         companyName: 'Marina Dubson Stenographic Services',
         phone: '(917) 494-1859',
-        email: 'MarinaDubson@gmail.com',
+        email: 'marina@dubsonstenoservices.com',
         address: '12A Saturn Lane, Staten Island, NY',
     })
 
@@ -360,7 +360,7 @@ export function LandingContact() {
                 setContactInfo({
                     companyName: data.companyName || 'Marina Dubson Stenographic Services',
                     phone: data.phone || '(917) 494-1859',
-                    email: data.email || 'MarinaDubson@gmail.com',
+                    email: data.email || 'marina@dubsonstenoservices.com',
                     address: data.address || '12A Saturn Lane, Staten Island, NY',
                 })
             } catch (error) {

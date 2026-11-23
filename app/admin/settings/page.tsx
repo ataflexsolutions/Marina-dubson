@@ -100,7 +100,7 @@ export default function AdministrativeSettingsPage() {
                         email: data.user.email || '',
                         company: data.user.company || 'Marina Dubson Stenographic',
                         availability: data.user.availability || '(917) 494-1859',
-                        portfolio: data.user.portfolio || 'MarinaDubson@gmail.com',
+                        portfolio: data.user.portfolio || 'marina@dubsonstenoservices.com',
                         certification: data.user.certification || '12A Saturn Lane, Staten Island, NY',
                         bio: data.user.bio || 'Directing the future of stenographic excellence.'
                     }))

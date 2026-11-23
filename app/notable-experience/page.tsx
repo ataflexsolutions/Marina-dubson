@@ -231,11 +231,11 @@ export default function NotableExperiencePage() {
                                     (917) 494-1859
                                 </a>
                                 <a
-                                    href="mailto:MarinaDubson@gmail.com"
+                                    href="mailto:marina@dubsonstenoservices.com"
                                     className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-sm font-medium text-white/90 transition-colors hover:border-[#D9C035]/50"
                                 >
                                     <Mail className="h-5 w-5 shrink-0 text-[#D9C035]" />
-                                    MarinaDubson@gmail.com
+                                    marina@dubsonstenoservices.com
                                 </a>
                             </div>
                         </div>

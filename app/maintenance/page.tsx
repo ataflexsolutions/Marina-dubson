@@ -67,11 +67,11 @@ export default function MaintenancePage() {
                         +1 (917) 494-1859
                     </a>
                     <a
-                        href="mailto:MarinaDubson@gmail.com"
+                        href="mailto:marina@dubsonstenoservices.com"
                         className="flex items-center justify-center gap-3 rounded-md bg-[#D9C035] px-6 py-4 text-sm font-bold text-gray-900 transition-colors hover:bg-[#B8860B]"
                     >
                         <Mail className="h-4 w-4" />
-                        MarinaDubson@gmail.com
+                        marina@dubsonstenoservices.com
                     </a>
                 </div>
             </main>

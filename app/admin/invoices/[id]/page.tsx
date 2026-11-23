@@ -376,7 +376,7 @@ export default function InvoiceDetailPage() {
                                 <div className="flex items-center justify-center gap-4 text-[9px] font-black text-primary uppercase tracking-widest mt-4">
                                     <span>(917) 494-1859</span>
                                     <div className="h-1 w-1 rounded-full bg-border" />
-                                    <span>MarinaDubson@gmail.com</span>
+                                    <span>marina@dubsonstenoservices.com</span>
                                 </div>
                             </div>
                         </div>

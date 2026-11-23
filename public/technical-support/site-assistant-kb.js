@@ -56,7 +56,7 @@
       a: "To request a reporter, use <span class='ts-ref'>Contact</span> — Marina welcomes inquiries from attorneys, agencies, institutions and schools. If you already have a portal account, log in and book directly from there." },
 
     { id: "contact-info", roles: ALL, kw: ["contact", "email", "reach you", "get in touch", "phone", "call", "message"],
-      a: "You can reach Marina by email at <strong>MarinaDubson@gmail.com</strong>, or through the form on <span class='ts-ref'>Contact</span>." },
+      a: "You can reach Marina by email at <strong>marina@dubsonstenoservices.com</strong>, or through the form on <span class='ts-ref'>Contact</span>." },
 
     { id: "register-client", roles: ALL, kw: ["sign up", "create an account", "register", "client account", "become a client", "agency account"],
       a: "To create a client account, go to <span class='ts-ref'>Register</span> and choose <strong>Private Client</strong> or <strong>Agency</strong>, then fill in your name, email and a password (min. 8 characters with a symbol)." },
