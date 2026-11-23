@@ -36,6 +36,12 @@ services:
       - NEXT_PUBLIC_APP_URL=https://dubsonstenoservices.com
       - MAINTENANCE_MODE=${MAINTENANCE_MODE:-false}
       - MAINTENANCE_BYPASS_SECRET=${MAINTENANCE_BYPASS_SECRET:-}
+      - SMTP_HOST=${SMTP_HOST:-}
+      - SMTP_PORT=${SMTP_PORT:-587}
+      - SMTP_USER=${SMTP_USER:-}
+      - SMTP_PASSWORD=${SMTP_PASSWORD:-}
+      - SMTP_FROM=${SMTP_FROM:-}
+      - CONTACT_NOTIFY_EMAIL=${CONTACT_NOTIFY_EMAIL:-}
     depends_on:
       db:
         condition: service_healthy

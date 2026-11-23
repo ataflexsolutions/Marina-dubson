@@ -25,14 +25,26 @@ export default function AboutPage() {
             <main>
                 <section className="relative flex min-h-[640px] items-end overflow-hidden bg-[#0B0B0C] sm:min-h-[720px] md:items-center lg:min-h-[860px]">
                     <div className="absolute inset-0 z-0">
+                        {/* Mobile only: soft blurred copy fills the area behind the header */}
                         <Image
                             src="/about-us-hero-bg.png"
-                            alt="Marina Dubson preparing legal documents"
+                            alt=""
+                            aria-hidden
                             fill
                             priority
                             sizes="100vw"
-                            className="object-cover object-[8%_18%] sm:object-[12%_12%] md:object-[left_top] lg:object-top"
+                            className="scale-110 object-cover object-top blur-xl md:hidden"
                         />
+                        <div className="absolute inset-x-0 bottom-0 top-[84px] [mask-image:linear-gradient(to_bottom,transparent,black_24px)] md:top-0 md:[mask-image:none]">
+                            <Image
+                                src="/about-us-hero-bg.png"
+                                alt="Marina Dubson preparing legal documents"
+                                fill
+                                priority
+                                sizes="100vw"
+                                className="object-cover object-[10%_top] sm:object-[12%_top] md:object-[left_top] lg:object-top"
+                            />
+                        </div>
                         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80 md:hidden" />
                         <div className="absolute inset-0 hidden bg-gradient-to-r from-black/15 via-black/30 to-black/60 md:block" />
                     </div>
