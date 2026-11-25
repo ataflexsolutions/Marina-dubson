@@ -7,6 +7,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import prisma from '@/lib/prisma'
 import { extractTokenFromHeader, verifyToken } from '@/lib/auth'
 import { z } from 'zod'
+import { askLLM, kbToText } from '@/lib/ai-assistant'
+import { guideForRole } from '@/lib/assistant-knowledge'
 
 const askSchema = z.object({
     question: z.string().min(1).max(1000),
@@ -130,6 +132,26 @@ export async function POST(request: NextRequest) {
             }
             if (sc > 0 && pk && it.id.indexOf(pk.replace(/\s+/g, '')) !== -1) sc += 0.5
             if (sc > bestScore) { bestScore = sc; best = it }
+        }
+
+        // 3a) personal-data question → answer from DB (scoped to caller)
+        if (best && bestScore >= 1 && best.id === 'data-own' && (role === 'private' || role === 'agency')) {
+            const answer = await answerDataOwn(payload.email)
+            await logAsk(payload.userId, 'ok', best.id)
+            return NextResponse.json({ answer, declined: false, intent: best.id })
+        }
+
+        // 3b) AI answer (OpenRouter) grounded in the KB; falls back to scripted match if unavailable
+        const ai = await askLLM({
+            question,
+            page,
+            roleLabel: `${ROLE_LABEL[role] || role} (logged into the portal)`,
+            knowledge: guideForRole(role) + '\n\nQUICK FAQ:\n' + kbToText({ KB, OOS, ROLE_LABEL }, role),
+            audience: 'portal',
+        })
+        if (ai) {
+            await logAsk(payload.userId, 'ok', 'ai')
+            return NextResponse.json({ answer: ai, declined: false, intent: 'ai' })
         }
 
         if (!best || bestScore < 1) {

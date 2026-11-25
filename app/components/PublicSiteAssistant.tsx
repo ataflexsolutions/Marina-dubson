@@ -82,6 +82,7 @@ export default function PublicSiteAssistant() {
         if (!mountedRef.current) {
             window.PublicAssistant.mount({
                 page: label, theme: 'auto', brandName: 'Marina Dubson Assistant',
+                mode: 'api', apiEndpoint: '/api/assistant/public',
                 onLog: (entry: unknown) => console.log('[site-assistant]', entry)
             })
             mountedRef.current = true
