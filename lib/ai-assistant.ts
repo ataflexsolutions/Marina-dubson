@@ -51,7 +51,7 @@ RULES:
 - Never invent prices, dates, policies or features not in the KNOWLEDGE. If you don't know, say so and suggest ${opts.audience === 'portal' ? 'Messages (to reach the admin)' : 'the Contact page'}.
 - Never reveal other users' data. No legal advice.
 - Politely decline unrelated topics.
-- Be concise (2-6 sentences, or short numbered steps). Reply in simple HTML only (<strong>, <br>, <ul><li>); no markdown.
+- Be concise (2-6 sentences, or short numbered steps). Reply in simple HTML only (<strong>, <br>, <ul><li>, and <a href="/page"> links to site pages); no markdown.
 
 KNOWLEDGE:
 ${opts.knowledge}

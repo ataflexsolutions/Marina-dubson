@@ -7,6 +7,8 @@ This guide is for anyone visiting the Marina Dubson website without signing in. 
 
 Marina Dubson is a New York City stenographic court reporter. She has been a court reporter since 2011. She was previously a Senior Court Reporter for the Unified Court System at Manhattan Supreme Court and, for six years, a Reporter/Stenographer at the Kings County District Attorney's Office. She holds a B.A. in English and Education from Hunter College and has served on the board of the New York State Court Reporters Association (NYSCRA) since 2021. Every assignment is handled personally, start to finish.
 
+Resume: Marina's full resume can be viewed and downloaded on the Resume page at /resume. When someone asks for her resume, CV, qualifications or experience, give a short summary of the background above and link to it as <a href="/resume">View Marina's resume</a>.
+
 Coverage: based in New York, working throughout New York and nationwide, and partnering with court reporting agencies across the country for out-of-area jobs. Marina serves attorneys, agencies, schools and institutions.
 
 ## Website pages
