@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Mail, Phone, MapPin } from 'lucide-react'
+import { Mail, Phone } from 'lucide-react'
 import { PublicHeader, PublicFooter } from '../components/landing/PublicLayout'
 import {
     MarinaHero,
@@ -216,13 +216,6 @@ export default function NotableExperiencePage() {
                                 </p>
                             </div>
                             <div className="grid gap-3 sm:grid-cols-1">
-                                <div className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-white/90">
-                                    <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-[#D9C035]" />
-                                    <div className="text-sm font-medium leading-relaxed">
-                                        <p>12A Saturn Lane</p>
-                                        <p>Staten Island, NY 10314</p>
-                                    </div>
-                                </div>
                                 <a
                                     href="tel:+19174941859"
                                     className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-sm font-medium text-white/90 transition-colors hover:border-[#D9C035]/50"

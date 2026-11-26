@@ -12,7 +12,7 @@ export const staticBlogs: StaticBlog[] = [
         slug: 'deposition-best-practices',
         title: 'Deposition Best Practices',
         excerpt: 'Simple habits that help depositions run cleanly — from exhibits and spelling lists to pacing and Realtime readiness.',
-        date: '2024-03-03',
+        date: '2026-11-12',
         author: 'Marina Dubson',
         content: `
 <p>A clean deposition record starts before anyone says “on the record.” A few small preparations make the day smoother for counsel, witnesses, and the reporter.</p>
@@ -29,7 +29,7 @@ export const staticBlogs: StaticBlog[] = [
         slug: 'court-reporting-checklist',
         title: 'A Court Reporting Checklist',
         excerpt: 'What to confirm before the job starts so coverage, logistics, and transcript delivery stay on track.',
-        date: '2024-03-03',
+        date: '2026-10-08',
         author: 'Marina Dubson',
         content: `
 <p>Use this checklist when you book a reporter so the assignment starts clean and finishes on schedule.</p>
@@ -49,7 +49,7 @@ export const staticBlogs: StaticBlog[] = [
         slug: 'keeping-proceedings-smooth',
         title: 'Keeping Proceedings Smooth',
         excerpt: 'Practical tips for quieter rooms, clearer speakers, and fewer interruptions when the record matters.',
-        date: '2024-03-03',
+        date: '2026-08-21',
         author: 'Marina Dubson',
         content: `
 <p>The best transcripts come from rooms that make listening easy. You do not need a perfect studio — just intentional habits.</p>
@@ -65,7 +65,7 @@ export const staticBlogs: StaticBlog[] = [
         slug: 'avoiding-transcript-delays',
         title: 'Avoiding Transcript Delays',
         excerpt: 'How early coordination on roughs, dailies, and certified finals keeps turnaround predictable.',
-        date: '2024-03-03',
+        date: '2026-06-17',
         author: 'Marina Dubson',
         content: `
 <p>Transcript delays usually start with unclear delivery expectations, not with the reporting itself.</p>
@@ -81,7 +81,7 @@ export const staticBlogs: StaticBlog[] = [
         slug: 'realtime-without-the-stress',
         title: 'Realtime Without the Stress',
         excerpt: 'What counsel and coordinators can expect when Realtime is on — and how to get the most from the feed.',
-        date: '2024-03-03',
+        date: '2026-04-09',
         author: 'Marina Dubson',
         content: `
 <p>Realtime lets you read testimony as it is spoken. Used well, it is a calm advantage — not a distraction.</p>
@@ -94,10 +94,10 @@ export const staticBlogs: StaticBlog[] = [
 `,
     },
     {
-        slug: 'notes-from-the-reporting-room',
-        title: 'Notes from the Reporting chair',
+        slug: 'notes-from-the-reporting-chair',
+        title: 'Notes from the Reporting Chair',
         excerpt: 'Business updates, industry news, and field notes from day-to-day court reporting work in New York.',
-        date: '2024-03-03',
+        date: '2026-02-24',
         author: 'Marina Dubson',
         content: `
 <p>This space is for practical notes from the field — how coverage is shifting, what coordinators are asking for, and what makes reporting days run better in New York.</p>

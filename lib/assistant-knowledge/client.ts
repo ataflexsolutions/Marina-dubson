@@ -202,5 +202,5 @@ Sign Out: click "Sign Out" to log out; you are returned to the login page.
 
 - Messages tab: fastest way to reach a person at Marina Dubson's office.
 - Settings, Contact Admin: Email Admin at admin@marinadubson.com.
-- Marina can also be reached at marina@dubsonstenoservices.com or +1 (917) 494-1858 (listed on the public Contact page).
+- Marina can also be reached at marina@dubsonstenoservices.com or +1 (917) 494-1859 (listed on the public Contact page).
 `

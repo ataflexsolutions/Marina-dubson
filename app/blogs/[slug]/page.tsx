@@ -36,7 +36,7 @@ async function resolveBlog(slug: string) {
         title: staticBlog.title,
         excerpt: staticBlog.excerpt,
         content: staticBlog.content,
-        createdAt: new Date(staticBlog.date),
+        createdAt: new Date(`${staticBlog.date}T12:00:00`),
         authorName: staticBlog.author,
     }
 }

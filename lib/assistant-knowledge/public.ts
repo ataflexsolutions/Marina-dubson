@@ -46,7 +46,7 @@ Option 2 - Client portal: if you have a client account, sign in and book directl
 
 ## Contact information
 
-- Phone: +1 (917) 494-1858
+- Phone: +1 (917) 494-1859
 - Email: marina@dubsonstenoservices.com
 - Contact form: on the Contact Us page
 - LinkedIn: linked in the site footer

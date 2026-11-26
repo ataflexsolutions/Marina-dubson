@@ -5,7 +5,7 @@ import Image from 'next/image'
 import React, { useState } from 'react'
 import { PublicHeader, PublicFooter } from '../components/landing/PublicLayout'
 import { MarinaCTA } from '../components/landing/MarinaHomepage'
-import { Phone, Mail } from 'lucide-react'
+import { Phone, Mail, Loader2, CheckCircle2, AlertCircle } from 'lucide-react'
 
 export default function ContactPage() {
     const [formData, setFormData] = useState({
@@ -20,6 +20,7 @@ export default function ContactPage() {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target
         setFormData(prev => ({ ...prev, [name]: value }))
+        if (status === 'sent' || status === 'error') setStatus('idle')
     }
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -34,7 +35,6 @@ export default function ContactPage() {
             if (!res.ok) throw new Error('Request failed')
             setStatus('sent')
             setFormData({ firstName: '', lastName: '', email: '', phone: '', message: '' })
-            setTimeout(() => setStatus('idle'), 4000)
         } catch {
             setStatus('error')
         }
@@ -121,8 +121,8 @@ export default function ContactPage() {
                                         <div className="h-9 w-9 rounded-full border-2 border-gray-900/40 flex items-center justify-center shrink-0">
                                             <Phone className="h-4 w-4 text-gray-900" />
                                         </div>
-                                        <a href="tel:+19174941858" className="text-base font-semibold text-gray-900 hover:underline">
-                                            +1 (917) 494-1858
+                                        <a href="tel:+19174941859" className="text-base font-semibold text-gray-900 hover:underline">
+                                            +1 (917) 494-1859
                                         </a>
                                     </div>
 
@@ -155,6 +155,7 @@ export default function ContactPage() {
                                             <input
                                                 type="text"
                                                 name="firstName"
+                                                required
                                                 value={formData.firstName}
                                                 onChange={handleChange}
                                                 placeholder="First Name"
@@ -175,6 +176,7 @@ export default function ContactPage() {
                                             <input
                                                 type="email"
                                                 name="email"
+                                                required
                                                 value={formData.email}
                                                 onChange={handleChange}
                                                 placeholder="Email"
@@ -193,6 +195,7 @@ export default function ContactPage() {
                                         {/* Message */}
                                         <textarea
                                             name="message"
+                                                required
                                             value={formData.message}
                                             onChange={handleChange}
                                             rows={5}
@@ -200,14 +203,28 @@ export default function ContactPage() {
                                             className="w-full bg-white border border-[#B8860B] rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-[#B8860B]/30 text-gray-800 placeholder:text-gray-400 font-medium transition-all resize-none"
                                         />
 
+                                        {status === 'sent' && (
+                                            <div role="status" className="flex items-start gap-3 rounded-xl border border-emerald-300 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-800">
+                                                <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-600" />
+                                                <span>Thank you! Your message has been sent. Marina will get back to you shortly.</span>
+                                            </div>
+                                        )}
+                                        {status === 'error' && (
+                                            <div role="alert" className="flex items-start gap-3 rounded-xl border border-red-300 bg-red-50 px-4 py-3 text-sm font-medium text-red-800">
+                                                <AlertCircle className="h-5 w-5 shrink-0 text-red-600" />
+                                                <span>Sorry, your message could not be sent. Please try again or email marina@dubsonstenoservices.com.</span>
+                                            </div>
+                                        )}
+
                                         {/* Submit */}
                                         <div>
                                             <button
                                                 type="submit"
                                                 disabled={status === 'sending'}
-                                                className="bg-[#D9C035] hover:bg-[#B8860B] text-gray-900 px-8 py-3 rounded-lg text-sm font-semibold transition-colors shadow-md disabled:opacity-60"
+                                                className="inline-flex items-center justify-center gap-2 bg-[#D9C035] hover:bg-[#B8860B] text-gray-900 px-8 py-3 rounded-lg text-sm font-semibold transition-colors shadow-md disabled:cursor-not-allowed disabled:opacity-70"
                                             >
-                                                {status === 'sending' ? 'Sending…' : status === 'sent' ? 'Sent ✓' : status === 'error' ? 'Try Again' : 'Submit'}
+                                                {status === 'sending' && <Loader2 className="h-4 w-4 animate-spin" />}
+                                                {status === 'sending' ? 'Sending…' : 'Submit'}
                                             </button>
                                         </div>
                                     </div>

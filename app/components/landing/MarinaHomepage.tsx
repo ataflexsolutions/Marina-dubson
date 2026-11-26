@@ -3,7 +3,8 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Phone, Mail, Star, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Phone, Mail, Star, ChevronLeft, ChevronRight, Loader2, CheckCircle2, AlertCircle } from 'lucide-react'
+import { usePathname } from 'next/navigation'
 
 export function MarinaHero({
   bgImage = '/home-her-bg-latest.jpeg',
@@ -292,7 +293,36 @@ export function MarinaExperienceTeaser() {
   )
 }
 
+const emptyContactForm = { firstName: '', lastName: '', email: '', phone: '', message: '' }
+
 export function MarinaContact({ dark = false }: { dark?: boolean }) {
+  const pathname = usePathname()
+  const [formData, setFormData] = React.useState(emptyContactForm)
+  const [status, setStatus] = React.useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData((prev) => ({ ...prev, [name]: value }))
+    if (status === 'sent' || status === 'error') setStatus('idle')
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setStatus('sending')
+    try {
+      const res = await fetch('/api/contact-inquiries', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formData, source: pathname || '/' }),
+      })
+      if (!res.ok) throw new Error('Request failed')
+      setStatus('sent')
+      setFormData(emptyContactForm)
+    } catch {
+      setStatus('error')
+    }
+  }
+
   return (
     <section className={`py-24 relative ${dark ? 'bg-[#0B0B0C]' : 'bg-white'}`}>
       <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
@@ -324,14 +354,21 @@ export function MarinaContact({ dark = false }: { dark?: boolean }) {
           <div className="w-full md:w-7/12">
             <div className={`p-8 md:p-12 rounded-[2.5rem] flex flex-col justify-center h-full ${dark ? 'bg-[#151515] border border-white/10' : 'bg-[#f4f6fa] border border-gray-100'}`}>
               <h2 className={`text-4xl lg:text-[42px] font-black uppercase mb-10 tracking-tight leading-none ${dark ? 'text-white' : 'text-gray-900'}`}>Get In Touch</h2>
-              <form className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <input
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    required
                     type="text"
                     placeholder="First Name"
                     className={`w-full border border-[#D9C035] rounded-xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-[#D9C035]/20 font-medium transition-all ${dark ? 'bg-[#0B0B0C] text-white placeholder-gray-500' : 'bg-white text-gray-800 placeholder-gray-400'}`}
                   />
                   <input
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleChange}
                     type="text"
                     placeholder="Last Name"
                     className={`w-full border border-[#D9C035] rounded-xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-[#D9C035]/20 font-medium transition-all ${dark ? 'bg-[#0B0B0C] text-white placeholder-gray-500' : 'bg-white text-gray-800 placeholder-gray-400'}`}
@@ -339,27 +376,52 @@ export function MarinaContact({ dark = false }: { dark?: boolean }) {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <input
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
                     type="email"
                     placeholder="Email"
                     className={`w-full border border-[#D9C035] rounded-xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-[#D9C035]/20 font-medium transition-all ${dark ? 'bg-[#0B0B0C] text-white placeholder-gray-500' : 'bg-white text-gray-800 placeholder-gray-400'}`}
                   />
                   <input
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
                     type="tel"
                     placeholder="Phone Num"
                     className={`w-full border border-[#D9C035] rounded-xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-[#D9C035]/20 font-medium transition-all ${dark ? 'bg-[#0B0B0C] text-white placeholder-gray-500' : 'bg-white text-gray-800 placeholder-gray-400'}`}
                   />
                 </div>
                 <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
                   rows={5}
                   placeholder="Message"
                   className={`w-full border border-[#D9C035] rounded-xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-[#D9C035]/20 font-medium transition-all resize-none ${dark ? 'bg-[#0B0B0C] text-white placeholder-gray-500' : 'bg-white text-gray-800 placeholder-gray-400'}`}
                 ></textarea>
+                {status === 'sent' && (
+                  <div role="status" className="flex items-start gap-3 rounded-xl border border-emerald-300 bg-emerald-50 px-5 py-4 text-sm font-medium text-emerald-800">
+                    <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-600" />
+                    <span>Thank you! Your message has been sent. Marina will get back to you shortly.</span>
+                  </div>
+                )}
+                {status === 'error' && (
+                  <div role="alert" className="flex items-start gap-3 rounded-xl border border-red-300 bg-red-50 px-5 py-4 text-sm font-medium text-red-800">
+                    <AlertCircle className="h-5 w-5 shrink-0 text-red-600" />
+                    <span>Sorry, your message could not be sent. Please try again or email marina@dubsonstenoservices.com.</span>
+                  </div>
+                )}
                 <div>
                   <button
-                    type="button"
-                    className="bg-[#D9C035] text-gray-900 px-10 py-3.5 rounded-lg font-semibold text-base hover:bg-[#B8860B] transition-all shadow-md active:scale-98"
+                    type="submit"
+                    disabled={status === 'sending'}
+                    className="inline-flex items-center justify-center gap-2 bg-[#D9C035] text-gray-900 px-10 py-3.5 rounded-lg font-semibold text-base hover:bg-[#B8860B] transition-all shadow-md active:scale-98 disabled:cursor-not-allowed disabled:opacity-70"
                   >
-                    Submit
+                    {status === 'sending' && <Loader2 className="h-5 w-5 animate-spin" />}
+                    {status === 'sending' ? 'Sending…' : 'Submit'}
                   </button>
                 </div>
               </form>
